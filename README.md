@@ -1,103 +1,65 @@
-# Nessus Essentials Vulnerability Assessment Lab
+# Tenable Nessus Essentials Scan
 
-![Nessus](https://img.shields.io/badge/Vulnerability%20Scanner-Nessus-00C176)
-![Ubuntu](https://img.shields.io/badge/Platform-Ubuntu-E95420)
-![Kali Linux](https://img.shields.io/badge/Target-Kali%20Linux-268BEE)
-![Nmap](https://img.shields.io/badge/Recon-Nmap-00457C)
-![Project Type](https://img.shields.io/badge/Project-Homelab-blueviolet)
+Performed vulnerability scanning in a lab environment using Nessus Essentials to identify and review host weaknesses.
 
-## Overview
-
-This project documents a hands-on vulnerability assessment lab using **Nessus Essentials** to scan a **Kali Linux** system from an **Ubuntu** machine in a virtualized environment. The walkthrough covers installation, initial configuration, service startup, basic network discovery, scan creation, vulnerability review, and report generation.
-
-This lab demonstrates foundational vulnerability management skills that are directly relevant to security operations, defensive validation, and entry-level security analyst work.
-
----
+![Nessus](https://img.shields.io/badge/Vulnerability%20Scanner-Tenable%20Nessus-0C7BDC)
+![Platform](https://img.shields.io/badge/Platform-Ubuntu%20%7C%20Kali%20Linux-orange)
+![Lab](https://img.shields.io/badge/Environment-VirtualBox-informational)
+![Focus](https://img.shields.io/badge/Focus-Vulnerability%20Assessment-red)
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Objectives](#objectives)
-- [Lab Environment](#lab-environment)
-- [Tools Used](#tools-used)
-- [Skills Demonstrated](#skills-demonstrated)
-- [Assessment Workflow](#assessment-workflow)
-- [Step-by-Step Walkthrough](#step-by-step-walkthrough)
-  - [1. Install Nessus](#1-install-nessus)
-  - [2. Start the Nessus Service](#2-start-the-nessus-service)
-  - [3. Complete Initial Web Setup](#3-complete-initial-web-setup)
-  - [4. Identify Lab Network Targets](#4-identify-lab-network-targets)
-  - [5. Create and Configure the Scan](#5-create-and-configure-the-scan)
-  - [6. Launch the Scan and Review Findings](#6-launch-the-scan-and-review-findings)
-  - [7. Export the Vulnerability Report](#7-export-the-vulnerability-report)
+- [Project Overview](#project-overview)
+- [Lab Goals](#lab-goals)
+- [Tools and Environment](#tools-and-environment)
+- [Install and Start Nessus](#install-and-start-nessus)
+- [Prepare the Target Discovery Process](#prepare-the-target-discovery-process)
+- [Create and Run the Scan](#create-and-run-the-scan)
+- [Review Vulnerabilities](#review-vulnerabilities)
+- [Generate the Report](#generate-the-report)
 - [Key Takeaways](#key-takeaways)
-- [What Employers Should Notice](#what-employers-should-notice)
 
----
+## Project Overview
 
-## Objectives
+This lab demonstrates how Tenable Nessus Essentials can be deployed in a controlled virtual environment to perform vulnerability scanning against a target host. The workflow covers installation, service validation, web setup, target discovery, scan configuration, vulnerability review, and report generation.
 
-- Install and initialize Nessus Essentials in a Linux-based lab
-- Validate that the Nessus service is running properly
-- Discover target hosts on the local virtual network
-- Create and launch a basic vulnerability assessment against a Kali Linux target
-- Review discovered vulnerabilities and remediation guidance
-- Export a professional scan report for documentation purposes
+This project highlights practical experience with:
 
----
+- Installing and initializing Nessus Essentials in Ubuntu
+- Discovering hosts within a lab subnet
+- Configuring a basic vulnerability assessment scan
+- Reviewing findings and remediation guidance
+- Exporting a scan report for documentation and analysis
 
-## Lab Environment
+## Lab Goals
 
-| Component | Details |
-|---|---|
-| Scanner Host | Ubuntu |
-| Target Host | Kali Linux |
-| Network Type | Local virtual lab network |
-| Scanner | Nessus Essentials |
-| Supporting Tool | Nmap |
-| Virtualization | VirtualBox lab environment |
+- Deploy Nessus Essentials in a lab environment
+- Verify the scanner service is running properly
+- Identify target systems on the local subnet
+- Run a vulnerability scan against a Kali Linux host
+- Review findings and recommended fixes
+- Export a formal assessment report
 
----
+## Tools and Environment
 
-## Tools Used
+### Tools Used
 
-- **Nessus Essentials** – vulnerability scanning and reporting
-- **Nmap** – network discovery and host identification
-- **Ubuntu Terminal** – package installation and service management
-- **Browser-based Nessus UI** – scan configuration, analysis, and reporting
+- Tenable Nessus Essentials
+- Nmap
+- Ubuntu Terminal
+- Web Browser
 
----
+### Environment Used
 
-## Skills Demonstrated
+- VirtualBox
+- Ubuntu
+- Kali Linux
 
-- Vulnerability management fundamentals
-- Linux package installation and service control
-- Host discovery and basic reconnaissance
-- Scan policy configuration
-- Vulnerability triage and remediation review
-- Security documentation and reporting
+## Install and Start Nessus
 
----
+After confirming the package integrity, Nessus was installed from the Ubuntu terminal.
 
-## Assessment Workflow
-
-1. Install Nessus from the Ubuntu terminal
-2. Start the `nessusd` service and verify it is active
-3. Complete Nessus Essentials initialization in the web interface
-4. Identify network addressing and locate the Kali target
-5. Build a basic scan and configure discovery options
-6. Launch the scan and inspect vulnerability results
-7. Export a report for documentation and follow-up analysis
-
----
-
-## Step-by-Step Walkthrough
-
-### 1. Install Nessus
-
-After verifying the package integrity, Nessus was installed from the Ubuntu terminal.
-
-#### Commands Used
+### Commands Used
 
 ```bash
 cd
@@ -105,244 +67,213 @@ ls
 sudo dpkg -i Nessus-10.7.4-ubuntu1404_amd64.deb
 ```
 
-#### Installation in Progress
-<p align="center">
-  <img src="https://imgur.com/S4WH61N.png" width="80%" alt="Installing Nessus package from the Ubuntu terminal">
-</p>
+### Installation Screenshot
 
-#### Successful Installation Output
-<p align="center">
-  <img src="https://imgur.com/NrFhBtS.png" width="80%" alt="Nessus installation completed successfully on Ubuntu">
-</p>
+![Nessus package installation](https://imgur.com/S4WH61N.png)
 
----
+### Post-Installation View
 
-### 2. Start the Nessus Service
+After the package installation completes, Nessus is installed on the Ubuntu system.
 
-Once installed, the Nessus daemon was started and verified to ensure the scanner was operational.
+![Post-installation output](https://imgur.com/NrFhBtS.png)
 
-#### Commands Used
+### Start the Nessus Service
+
+Open a new Ubuntu terminal and start the Nessus daemon. Then confirm that the service is actively running.
 
 ```bash
 sudo systemctl start nessusd
 sudo systemctl status nessusd
 ```
 
-#### Service Start and Status Verification
-<p align="center">
-  <img src="https://imgur.com/ovmNpvD.png" width="80%" alt="Starting the Nessus service and confirming it is active and running">
-</p>
+![Starting and validating nessusd service](https://imgur.com/ovmNpvD.png)
 
-After the service starts, Nessus provides a local HTTPS URL that can be opened in a browser to complete setup.
+### Open the Nessus Web Interface
 
-#### Nessus Local Access URL
-<p align="center">
-  <img src="https://imgur.com/uHw0K0O.png" width="80%" alt="Nessus local web URL displayed in the Ubuntu terminal">
-</p>
+Copy the local Nessus link shown in the terminal and paste it into your browser.
 
----
+![Nessus local access URL](https://imgur.com/uHw0K0O.png)
 
-### 3. Complete Initial Web Setup
+### Accept the Browser Warning
 
-Because Nessus uses a local self-signed certificate during setup, the browser presents a warning page first. After proceeding, the web-based initialization steps can be completed.
+Because Nessus uses a local certificate during setup, the browser may show a warning. Continue to the site to access the setup wizard.
 
-#### Browser Warning and Certificate Bypass
-<p align="center">
-  <img src="https://imgur.com/yo33RlI.png" width="80%" alt="Browser warning page before accessing the Nessus web interface">
-</p>
+![Browser security warning](https://imgur.com/yo33RlI.png)
 
-#### Nessus Welcome Screen
-<p align="center">
-  <img src="https://imgur.com/th8Fefp.png" width="80%" alt="Nessus welcome page in the browser">
-</p>
+### Continue Through the Setup Wizard
 
-#### Register for Nessus Essentials
-<p align="center">
-  <img src="https://imgur.com/vitSLAJ.png" width="80%" alt="Selecting Nessus Essentials during setup">
-</p>
+When the welcome page appears, proceed to the next step.
 
-#### Skip Registration Form if Already Registered
-<p align="center">
-  <img src="https://imgur.com/YJWThm6.png" width="80%" alt="Skipping account registration because an activation code was already obtained">
-</p>
+![Nessus welcome page](https://imgur.com/th8Fefp.png)
 
-#### Retrieve Activation Code from Email
-<p align="center">
-  <img src="https://imgur.com/aDPmWpX.png" width="80%" alt="Tenable email containing the Nessus Essentials activation code">
-</p>
+### Select Nessus Essentials
 
-#### Enter Activation Code
-<p align="center">
-  <img src="https://imgur.com/1lYjnTa.png" width="80%" alt="Entering the activation code in the Nessus setup wizard">
-</p>
+Choose **Register for Nessus Essentials** to continue the free lab setup.
 
-#### Create Nessus Credentials
-<p align="center">
-  <img src="https://imgur.com/jtGP7ga.png" width="80%" alt="Creating the Nessus username and password">
-</p>
+![Nessus Essentials selection](https://imgur.com/vitSLAJ.png)
 
-#### Plugin Initialization and Download
-<p align="center">
-  <img src="https://imgur.com/9v0QvSM.png" width="80%" alt="Nessus initializing and downloading plugins">
-</p>
+### Skip Registration if Already Completed
 
-<p align="center">
-  <img src="https://imgur.com/r9pd14K.png" width="80%" alt="Nessus continuing initialization after plugin download">
-</p>
+If registration has already been completed, choose the option to skip that step.
 
-#### Nessus Ready for Use
-<p align="center">
-  <img src="https://imgur.com/iVymTOE.png" width="80%" alt="Nessus setup completed and ready for use">
-</p>
+![Skip registration step](https://imgur.com/YJWThm6.png)
 
----
+### Retrieve the Activation Code
 
-### 4. Identify Lab Network Targets
+Open the email sent by Tenable and copy the activation code.
 
-Before scanning, the lab network was reviewed to determine the Ubuntu host addressing information and identify the Kali Linux target.
+![Activation email](https://imgur.com/aDPmWpX.png)
 
-#### Commands Used
+### Enter the Activation Code
+
+Paste the activation code into Nessus and continue.
+
+![Activation code entry](https://imgur.com/1lYjnTa.png)
+
+### Create Login Credentials
+
+Create a username and password for the Nessus web console.
+
+![Create Nessus account credentials](https://imgur.com/jtGP7ga.png)
+
+### Wait for Plugin Initialization
+
+Nessus will initialize and download plugins before the scanner becomes available.
+
+![Plugin download stage](https://imgur.com/9v0QvSM.png)
+
+### Complete Initialization
+
+Allow Nessus to finish its remaining initialization tasks.
+
+![Initialization progress](https://imgur.com/r9pd14K.png)
+
+### Ready State
+
+Once setup is complete, Nessus is ready for scanning operations.
+
+![Nessus ready state](https://imgur.com/iVymTOE.png)
+
+## Prepare the Target Discovery Process
+
+Before launching a scan, identify the scanner's network context and locate the target host.
+
+### Check the Default Gateway and Ubuntu IP Address
 
 ```bash
 route
 ifconfig
 ```
 
-#### Review Gateway and Local IP Addressing
-<p align="center">
-  <img src="https://imgur.com/R5kMq4M.png" width="80%" alt="Reviewing the default gateway and Ubuntu IP addressing from the terminal">
-</p>
+![Ubuntu network details](https://imgur.com/R5kMq4M.png)
 
-To locate the Kali system on the same subnet, Nmap host discovery was used.
+### Discover the Kali Target Host
 
-#### Command Used
+Use Nmap to identify live hosts on the subnet and determine the IP address of the Kali system.
 
 ```bash
 sudo nmap -PR -sn 10.0.2.0/24
 ```
 
-#### Identify the Kali Host on the Network
-<p align="center">
-  <img src="https://imgur.com/Y03XZPR.png" width="80%" alt="Using Nmap ping discovery to identify the Kali target host on the subnet">
-</p>
+![Nmap host discovery](https://imgur.com/Y03XZPR.png)
 
----
+## Create and Run the Scan
 
-### 5. Create and Configure the Scan
+### Initialize a New Scan
 
-With the target identified, a new Nessus scan was created using the **Basic Scan** template.
+After identifying the target system, create a new Nessus scan.
 
-#### Create a New Scan
-<p align="center">
-  <img src="https://imgur.com/SYVI2N8.png" width="80%" alt="Initializing a new scan in Nessus">
-</p>
+![Initialize new scan](https://imgur.com/SYVI2N8.png)
 
-#### Select the Basic Scan Template
-<p align="center">
-  <img src="https://imgur.com/Jw775Y3.png" width="80%" alt="Selecting the Basic Scan template in Nessus">
-</p>
+### Choose the Basic Scan Template
 
-#### Enter the Scan Name, Description, and Targets
-<p align="center">
-  <img src="https://imgur.com/UYFGgH1.png" width="80%" alt="Entering the scan details and target IP address in Nessus">
-</p>
+For this lab, the **Basic Scan** template is used to assess the Kali machine.
 
-#### Configure Discovery Options
+![Basic scan template selection](https://imgur.com/Jw775Y3.png)
 
-In this project, the discovery settings were adjusted to scan **all ports**, expanding visibility across the target host.
+### Define the Scan Details
 
-<p align="center">
-  <img src="https://imgur.com/HA26EEk.png" width="80%" alt="Configuring Nessus discovery settings to scan all ports">
-</p>
+Enter the scan name, description, and target IP address.
 
-#### Save the Scan Configuration
-<p align="center">
-  <img src="https://imgur.com/VZVFOqi.png" width="80%" alt="Saving the completed Nessus scan configuration">
-</p>
+![Scan configuration fields](https://imgur.com/UYFGgH1.png)
 
----
+### Configure Port Discovery
 
-### 6. Launch the Scan and Review Findings
+In the discovery settings, configure the scan to check all ports.
 
-Once the configuration was saved, the scan was launched from the Nessus dashboard.
+![All ports discovery setting](https://imgur.com/HA26EEk.png)
 
-#### Launch the Scan
-<p align="center">
-  <img src="https://imgur.com/UrCOXRS.png" width="80%" alt="Launching the configured Nessus scan">
-</p>
+### Save the Scan
 
-#### Scan Completion Status
-<p align="center">
-  <img src="https://imgur.com/82fxdOy.png" width="80%" alt="Nessus scan completed successfully with status indicator">
-</p>
+After the settings are configured, save the scan profile.
 
-After completion, the results page provided an overview of discovered issues and available tabs for deeper investigation.
+![Save the configured scan](https://imgur.com/VZVFOqi.png)
 
-#### Results Overview and Vulnerability Tabs
-<p align="center">
-  <img src="https://imgur.com/Lk1Pgzo.png" width="80%" alt="Nessus results page showing vulnerability-related tabs">
-</p>
+### Launch the Scan
 
-#### Drill Down into Individual Vulnerabilities
-<p align="center">
-  <img src="https://imgur.com/CyYOyMX.png" width="80%" alt="Reviewing detailed vulnerability findings inside Nessus">
-</p>
+Start the vulnerability scan from the scan dashboard.
 
-#### Review Description and Remediation Guidance
-<p align="center">
-  <img src="https://imgur.com/o6ffQNJ.png" width="80%" alt="Viewing the vulnerability description and recommended remediation steps">
-</p>
+![Launch the Nessus scan](https://imgur.com/UrCOXRS.png)
 
----
+### Confirm Completion
 
-### 7. Export the Vulnerability Report
+When the check mark appears, the scan has finished and the results are ready to review.
 
-After reviewing the findings, a report was generated from the Nessus interface for documentation and offline review.
+![Completed scan status](https://imgur.com/82fxdOy.png)
 
-#### Open Report Export Options
-<p align="center">
-  <img src="https://imgur.com/5bCU94K.png" width="80%" alt="Opening the report export options from the vulnerability results page">
-</p>
+## Review Vulnerabilities
 
-#### Select the Report Format
-<p align="center">
-  <img src="https://imgur.com/x5mwp7D.png" width="80%" alt="Selecting the report format before generating the Nessus report">
-</p>
+### Open the Results Tabs
 
-#### Downloaded Report File
-<p align="center">
-  <img src="https://imgur.com/e6zlq8o.png" width="80%" alt="Generated Nessus report visible in the downloads folder">
-</p>
+The completed scan provides multiple tabs, including the vulnerability summary.
 
-#### Final Exported Report View
-<p align="center">
-  <img src="https://imgur.com/AXBDlRw.png" width="80%" alt="Opened Nessus report showing the exported vulnerability assessment results">
-</p>
+![Scan results overview](https://imgur.com/Lk1Pgzo.png)
 
----
+### Review Detailed Findings
+
+Open the vulnerabilities tab and select individual findings to review additional context.
+
+![Detailed vulnerability list](https://imgur.com/CyYOyMX.png)
+
+### Examine Recommended Fixes
+
+Each finding includes a description of the issue and remediation guidance.
+
+![Vulnerability description and solution](https://imgur.com/o6ffQNJ.png)
+
+## Generate the Report
+
+### Return to the Main Vulnerabilities Page
+
+Navigate back to the main scan page to export a report.
+
+![Return to report export page](https://imgur.com/5bCU94K.png)
+
+### Generate the Report
+
+Select the desired report format and generate the export.
+
+![Generate report options](https://imgur.com/x5mwp7D.png)
+
+### Locate the Downloaded File
+
+The report can be found in the downloads folder.
+
+![Downloaded report location](https://imgur.com/e6zlq8o.png)
+
+### Review the Final Report
+
+Open the exported file to review the assessment results.
+
+![Opened Nessus report](https://imgur.com/AXBDlRw.png)
 
 ## Key Takeaways
 
-- Nessus can be deployed quickly in a Linux-based homelab for realistic vulnerability assessment practice
-- Service validation and plugin initialization are critical before beginning scans
-- Basic network discovery helps confirm addressing and identify reachable targets before scanning
-- Nessus provides both vulnerability details and remediation guidance, which supports analyst learning and documentation
-- Exported reports make it easier to communicate findings and preserve assessment results
+This project demonstrates hands-on vulnerability assessment workflow knowledge, including scanner deployment, target discovery, scan execution, result review, and reporting. It also shows familiarity with:
 
----
+- Working in a virtualized security lab
+- Using Nmap to identify systems prior to scanning
+- Reviewing host weaknesses through Nessus findings
+- Interpreting remediation guidance from scan results
+- Documenting security work in a repeatable format
 
-## What Employers Should Notice
-
-This project highlights practical, entry-level security skills that map well to SOC, vulnerability management, and analyst roles:
-
-- Ability to install and operate security tooling in a lab environment
-- Comfort working in Linux and using terminal-based administration commands
-- Understanding of host discovery, scan configuration, and vulnerability review workflows
-- Clear documentation of technical procedures, findings, and output artifacts
-- Strong homelab initiative and hands-on learning outside of a classroom-only setting
-
----
-
-## Final Note
-
-This lab is a foundational vulnerability assessment exercise designed to build familiarity with scanner deployment, target discovery, vulnerability review, and reporting. It can be expanded further by adding authenticated scans, remediation validation, comparison scans, or a formal findings summary section in future iterations.
