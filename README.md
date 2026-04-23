@@ -1,68 +1,123 @@
+# Tenable Nessus Essentials Vulnerability Scanning Lab
 
-<h1>Tenable Nessus Essentials Scan</h1>
+![Platform](https://img.shields.io/badge/Platform-VirtualBox-blue)
+![Scanner](https://img.shields.io/badge/Vulnerability%20Scanner-Nessus%20Essentials-0f172a)
+![Host](https://img.shields.io/badge/Host-Ubuntu%2022.04-E95420)
+![Target](https://img.shields.io/badge/Target-Kali%20Linux-268BEE)
+![Focus](https://img.shields.io/badge/Focus-Vulnerability%20Assessment-darkgreen)
+![Status](https://img.shields.io/badge/Project-Completed-success)
 
+## Table of Contents
 
+- [Overview](#overview)
+- [Objectives](#objectives)
+- [Lab Environment](#lab-environment)
+- [Tools Used](#tools-used)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Project Walkthrough](#project-walkthrough)
+  - [1. Download and Verify Nessus](#1-download-and-verify-nessus)
+  - [2. Install and Start Nessus](#2-install-and-start-nessus)
+  - [3. Complete Initial Setup in the Browser](#3-complete-initial-setup-in-the-browser)
+  - [4. Identify the Target System](#4-identify-the-target-system)
+  - [5. Configure and Launch the Scan](#5-configure-and-launch-the-scan)
+  - [6. Review Findings and Export the Report](#6-review-findings-and-export-the-report)
+- [Results](#results)
+- [What Employers Should Notice](#what-employers-should-notice)
+- [Screenshots](#screenshots)
+- [Key Takeaways](#key-takeaways)
 
-<h2>Description</h2>
-This project entails deploying and configuring Nessus Essentials on Ubuntu, executed through the command line interface within VirtualBox. Using Ubuntu CLI tools, we will map the network and utilize Nessus to scan and assess Kali Linux for vulnerabilities.
+---
 
+## Overview
 
+This project demonstrates how to deploy and configure **Tenable Nessus Essentials** on **Ubuntu 22.04** inside a **VirtualBox lab**, then use it to perform a vulnerability assessment against a **Kali Linux** target.
 
+The lab walks through the full process from installation and service validation to target discovery, scan configuration, vulnerability review, and report generation. This project highlights practical exposure to vulnerability management workflows in a controlled lab environment.
 
-<br />
+> **Note:** This project was conducted in an authorized home lab environment for educational and defensive security purposes.
 
+---
 
-<h2>Tools and Commands</h2>
+## Objectives
 
-- <b>Nessus Essentials</b>
-- <b>sha256sum</b>
-- <b>route</b>
-- <b>ifconfig</b>
-- <b>nmap</b>
+- Install Nessus Essentials on Ubuntu
+- Verify package integrity before installation
+- Start and validate the Nessus service
+- Access the Nessus web interface and complete setup
+- Identify the target Kali Linux system on the lab network
+- Configure and run a vulnerability scan
+- Review findings and export a report
+- Document the workflow in a professional, repeatable format
 
-<h2>Environments and Machines</h2>
+---
 
-- <b>VirtualBox VM</b>
-- <b>Kali Linux</b>
-- <b>Ubuntu 22.04</b>
+## Lab Environment
 
-<h1>Project walk-through:</h1>
-  
-<h2>Download Nessus from www.tenable.com/products/nessus/nessus-essentials:</h2>
+### Virtual Machines
+- **Ubuntu 22.04** – Nessus host
+- **Kali Linux** – scan target
 
-<br />
+### Virtualization
+- **VirtualBox**
 
-<h3>Fill out the 'Register for an Activation Code' and click 'Get Started':</h3>
-<p align="center">
-<img src="https://imgur.com/U8trQNm.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-<h3>Click the 'Download' link:</h3>
-<p align="center">
-<img src="https://imgur.com/PL0BOqW.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-<h3>Choose your platform and click Download:</h3>
-<p align="center">
-<img src="https://imgur.com/CGVd31V.png" height="80%" width="80%" alt="Project walk-through"/>
-<br />
-<br />
-<h3>Open the command line terminal in Ubuntu and check/compare the sha256 hash values for file integrity:</h3>
-Pro Tip: After typing 'sha256sum Downloads/N' hit the tab key to autofill the rest <br/>
-  
-  ## Usage:
-    sha256sum Downloads/Nessus-10.7.4-ubuntu1404_amd64.deb 
-<p align="center"> 
-<img src="https://imgur.com/4CK49vY.png" height="80%" width="80%" alt="Project walk-through"/> 
-<br />
-<br />
-<h3>Install the download package:</h3>
-Change directory(cd) into the Downloads/ folder, list contents(ls) and install the Nessus package <br/>
-  
- ## Usage:
-    cd
-    ls
-    sudo dpkg -i Nessus-10.7.4-ubuntu1404_amd64.deb
+### Network Context
+- Local lab subnet used for host discovery and vulnerability scanning
+
+---
+
+## Tools Used
+
+- **Tenable Nessus Essentials**
+- **sha256sum**
+- **route**
+- **ifconfig**
+- **nmap**
+
+---
+
+## Skills Demonstrated
+
+- Vulnerability scanner deployment and setup
+- Linux package installation and service management
+- File integrity validation
+- Basic network enumeration
+- Target discovery in a segmented lab
+- Vulnerability assessment workflow
+- Report generation and documentation
+- Security lab troubleshooting and validation
+
+---
+
+## Project Walkthrough
+
+## 1. Download and Verify Nessus
+
+The first step was to download **Nessus Essentials** from Tenable and register for an activation code.
+
+After downloading the package, the installer hash was checked to validate file integrity before installation.
+
+### Command Used
+```bash
+sha256sum Downloads/Nessus-10.7.4-ubuntu1404_amd64.deb
+
+```
+
+This step demonstrates good security hygiene by verifying that the downloaded package matches the expected hash before installation.
+
+---
+
+## 2. Install and Start Nessus
+
+After confirming the package integrity, Nessus was installed from the Ubuntu terminal.
+
+### Commands Used
+
+```bash
+cd
+ls
+sudo dpkg -i Nessus-10.7.4-ubuntu1404_amd64.deb
+
+```
   
 <p align="center">
 <img src="https://imgur.com/S4WH61N.png" height="80%" width="80%" alt="Project walk-through"/>
